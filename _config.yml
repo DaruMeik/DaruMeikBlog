@@ -2,4 +2,5 @@ theme: minima
 minima:
   skin: dark
   
-title: Meikumo's Random Blog
+title: Meikumo's Blog
+description: Random CG-related stuffs translated for Vietnamese dev.
