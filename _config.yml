@@ -2,7 +2,5 @@ theme: minima
 minima:
   skin: dark
   
-title: Meikumo's Random Blog
-description: 
-  Welcome to my homepage. This blog is mostly used to spread knowledge related to the Computer Graphics field to Vietnamese people, but there will also be some English posts about topics I find interesting.
-  Xin chào đến với blog cá nhân của mình. Blog này chủ yếu sẽ về những kiến thức liên quan đến ngành đồ họa máy tính mà mình thấy hay. Thông qua blog này, mình mong ngành đồ họa máy tính sẽ dễ tiếp cận hơn cho người Việt.
+title: Meikumo's Blog
+description: Random CG-related stuffs translated for Vietnamese dev.
