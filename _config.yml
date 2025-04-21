@@ -3,8 +3,6 @@ minima:
   skin: dark
   
 title: Meikumo's Random Blog
-description:
-  """
-  Welcome to Meik's personal blog. This page aims to make CG related knowledge more accessible for Vietnamese developers.\n
+description:|
+  Welcome to Meik's personal blog. This page aims to make CG related knowledge more accessible for Vietnamese developers.
   Xin chào mọi người đến với blog cá nhân của Meik. Mình chủ yếu chia sẽ và dịch một số bài viết hay liên quan đến mảng đồ họa máy tính tại page này.
-  """
