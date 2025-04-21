@@ -76,7 +76,7 @@ Bạn nên trở thành kĩ sư đồ họa nếu:
   <img src="https://github.com/user-attachments/assets/b15e1669-4208-4eb2-8f70-61d28b748498"
     alt="Death Stranding" 
     style="width:75%">
-  <figcaption><p align="center">Các nhân vật trong game Death Stranding(Credit: Kojima's Production)</p></figcaption>
+  <figcaption><p align="center">Các nhân vật trong game Death Stranding (Credit: Kojima's Production)</p></figcaption>
   </p>
 </figure>
 
@@ -88,13 +88,13 @@ Bạn nên học nó khi đam mê và muốn học cái gì mới chứ về m�
 Theo mình, đây là một ngành rất nặng về toán nên những kiến thức từ đại học sẽ rất cần thiết (nhất là những môn đại cương như giải tích và đại số tuyến tính). 
 
 Nếu các bạn có thể đọc được tiếng Anh, mình siêu khuyến khích các bạn hãy đọc qua các nguồn sau đây (đây là những sách / hướng dẫn bản thân mình đã đọc qua):
-- Hướng dẫn sử dụng OpenGl: https://learnopengl.com/ \
+- Hướng dẫn sử dụng OpenGl: <https://learnopengl.com/> \
 (Thích hợp cho người mới bắt đầu, các bài viết có đầy đủ code để tham khảo và giải thích cụ thể từng khái niệm)
-- Hướng dẫn sơ bộ về shader (có tiếng Việt): https://thebookofshaders.com/ \
+- Hướng dẫn sơ bộ về shader (có tiếng Việt): <https://thebookofshaders.com/> \
 (Thích hợp cho những người hứng thú với shader, lập trình trên GPU cũng như muốn thử vẽ vời bằng toán)
-- Sách lý thuyết về ray tracing: https://pbr-book.org/ \
+- Sách lý thuyết về ray tracing: <https://pbr-book.org/> \
 (Thích hợp cho những bạn thích toán và đã có kiến thức cơ bản về lập trình nói chung)
-- Hướng dẫn về đồ họa trên Unity: https://catlikecoding.com/unity/tutorials/ \
+- Hướng dẫn về đồ họa trên Unity: <https://catlikecoding.com/unity/tutorials/> \
 (Thích hợp cho những bạn đã có kinh nghiệm với Unity và muốn tiếp xúc với lập trình trên GPU)
-- Channel Youtube về ứng dụng của đồ họa vi tính: https://www.youtube.com/@Acerola_t \
+- Channel Youtube về ứng dụng của đồ họa vi tính: <https://www.youtube.com/@Acerola_t/> \
 (Thích hợp cho những bạn muốn trầm trồ về những gì một kĩ sư đồ họa có thể làm được)
