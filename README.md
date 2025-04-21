@@ -1,2 +1,3 @@
-Welcome to my homepage. This blog is mostly used to spread knowledge related to the Computer Graphics field to Vietnamese people, but there will also be some English posts about topics I find interesting.
-Xin chào đến với blog cá nhân của mình. Blog này chủ yếu sẽ về những kiến thức liên quan đến ngành đồ họa máy tính mà mình thấy hay. Thông qua blog này, mình mong ngành đồ họa máy tính sẽ dễ tiếp cận hơn cho người Việt.
+# DaruMeik
+- Welcome to Meik's personal blog. Most posts here will be translated tutorial related to CG knowledge for Vietnamese, but I will add some tutorials in English from time to time.
+- Xin chào mọi người đến với blog cá nhân của Meik. Mình chủ yếu chia sẽ và dịch một số bài viết hay liên quan đến mảng đồ họa máy tính tại page này.
