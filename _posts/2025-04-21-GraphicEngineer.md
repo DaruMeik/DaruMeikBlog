@@ -24,30 +24,56 @@ Tuy nhiên, trong blog này mình sẽ sử dụng cụm từ đồ họa vi tí
 </figure>
 
 ## Kĩ sư đồ họa là gì?
-Kĩ sư đồ họa là người giúp đồ họa vi tính hiển thị lên màn hình của bạn một cách chính xác và đẹp nhất có thể. Công việc của họ bao gồm chuyển hóa thế giới 3D trong game sang chiếc màn hình 2D của bạn, làm việc với từng pixel để hiển thị đúng màu sắc mong muốn,
-tính toán cách ánh sáng tác động lên môi trường và ngược lại,... 
+Kĩ sư đồ họa là người giúp đồ họa vi tính hiển thị lên màn hình của bạn một cách chính xác và đẹp nhất có thể. 
+Công việc của họ bao gồm chuyển hóa thế giới 3D trong game sang chiếc màn hình 2D của bạn, làm việc với từng 
+pixel để hiển thị đúng màu sắc mong muốn, tính toán cách ánh sáng tác động lên môi trường và ngược lại,... 
+
+Cụ thể hơn, sau đây là một số ví dụ về những gì mà một kĩ sư đồ họa có thể làm:
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/c795a8db-380f-446e-a1d3-aa7ba283e89f"
+    alt="Cel shading" 
+    style="width:40%">
+  <figcaption><p align="center">Toon Shader biến họa tiết trên mô hình 3D sang nét vẽ 2D (Credit: Wikipedia)</p></figcaption>
+  </p>
+</figure>
 
 <figure>
 <p align="center" width="100%">
   <img src="https://github.com/user-attachments/assets/b1614d39-65f3-4742-b159-2e9f11cc389e"
     alt="Acerola Difference of Gaussians" 
     style="width:75%">
-  <figcaption><p align="center">Sử dụng shader để tạo filter đặc biệt cho game (Credit: Acerola)</p></figcaption>
+  <figcaption><p align="center">Dùng shader để tạo filter cho game (Credit: Acerola)</p></figcaption>
   </p>
 </figure>
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/2f0824fc-416c-4308-9368-4b1fb3891ec8"
+    style="width:75%">
+  <figcaption><p align="center">Render ảnh trong thời gian thực với raymarching SDF (Credit: Inigo Quilez)</p></figcaption>
+  </p>
+</figure>
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/c08f4ac7-9d5c-4ca6-9280-4346ffd3e90b"
+    style="width:75%">
+  <figcaption><p align="center">Tạo bóng giả giúp vừa làm đẹp nhưng vẫn tối ưu hóa tốc độ game (Credit: LearnOpenGL)</p></figcaption>
+  </p>
+</figure>
+
 
 <figure>
 <p align="center" width="100%">
   <img src= "https://github.com/user-attachments/assets/5a7585d1-c1fe-41e2-94cf-93f6548a43ac"
     alt="Raytracing" 
     style="width:75%">
-  <figcaption><p align="center">Hình ảnh được tạo ra từ công nghệ ray tracing (Credit: Physically Based Rendering:
+  <figcaption><p align="center">Hình ảnh được tạo ra từ công nghệ ray tracing (không phải ảnh chụp) (Credit: Physically Based Rendering:
 From Theory To Implementation)</p></figcaption>
   </p>
 </figure>
-
-Một người bạn gắn liền không thể thiếu với kĩ sư đồ họa là GPU (Graphics Process Unit). Đây là phần cứng chuyên về xử lý hình ảnh. Lập trình trên GPU rất khác biệt so với trên CPU nên đây là một skillset không thể thiếu ở một kĩ sư đồ họa. 
-Mình sẽ nói rõ hơn về nó việc lập trình trên GPU ở những bài viết sau.
 
 ## Sự khác biệt giữa lập trình đồ họa và thiết kế đồ họa
 Khi nghe từ đồ họa, nhiều người sẽ nghĩ rằng ngành kĩ sư đồ họa sẽ giống với thiết kế đồ họa. Nhưng thực tế, thì đây là 2 ngành khác biệt nhau hoàn toàn. 
@@ -66,10 +92,10 @@ Cụ thể hơn, khi làm việc với đồ họa vi tính, việc của thiế
 
 ## Những ai hợp để trở thành kĩ sư đồ họa?
 Bạn nên trở thành kĩ sư đồ họa nếu:
-- Bạn yêu thích toán học và muốn ứng dụng nó vào thực tế.
+- Bạn yêu thích toán học và muốn ứng dụng nó vào một cái gì đó mới lạ.
 - Bạn yêu thích đồ họa, muốn sáng tạo và làm những cái gì mới.
 - Bạn yêu thích đồ họa của các con game siêu thật như Cyberpunk2077, Death Stranding,... hay bạn yêu thích những game có đồ họa siêu đặc trưng như series Persona, BOTW, ... (aka bạn thích game)
-- ~~Bạn là M và thích giải tích cũng như rà bug không có hiển thị output trên GPU~~
+- ~~Bạn là M, thích nhìn công thức toán và giải tích phân cũng như rà bug không hint không output~~
 
 <figure>
 <p align="center" width="100%">
@@ -85,16 +111,28 @@ Mình là một du học sinh nước ngoài nên mình không nắm rõ thị t
 Bạn nên học nó khi đam mê và muốn học cái gì mới chứ về mặt tiền bạc thì mình không nói gì được. Tuy nhiên, theo quan điểm cá nhân, đây vẫn là một ngành vẫn còn rất nhiều cái để nghiên cứu và phát triển và rất có triển vọng.
 
 ## Bắt đầu từ đâu?
-Theo mình, đây là một ngành rất nặng về toán nên những kiến thức từ đại học sẽ rất cần thiết (nhất là những môn đại cương như giải tích và đại số tuyến tính). 
+Theo mình, đây là một ngành rất nặng về toán nên những kiến thức từ đại học sẽ rất cần thiết (nhất là những môn đại cương như giải tích và đại số tuyến tính). Nên nếu các bạn thực sự hứng thú với nó thì hãy bắt đầu với việc học đại học ngành máy tính cho thật kỹ vào.
 
-Nếu các bạn có thể đọc được tiếng Anh, mình siêu khuyến khích các bạn hãy đọc qua các nguồn sau đây (đây là những sách / hướng dẫn bản thân mình đã đọc qua):
-- Hướng dẫn sử dụng OpenGl: <https://learnopengl.com/> \
-(Thích hợp cho người mới bắt đầu, các bài viết có đầy đủ code để tham khảo và giải thích cụ thể từng khái niệm)
-- Hướng dẫn sơ bộ về shader (có tiếng Việt): <https://thebookofshaders.com/> \
-(Thích hợp cho những người hứng thú với shader, lập trình trên GPU cũng như muốn thử vẽ vời bằng toán)
-- Sách lý thuyết về ray tracing: <https://pbr-book.org/> \
-(Thích hợp cho những bạn thích toán và đã có kiến thức cơ bản về lập trình nói chung)
-- Hướng dẫn về đồ họa trên Unity: <https://catlikecoding.com/unity/tutorials/> \
-(Thích hợp cho những bạn đã có kinh nghiệm với Unity và muốn tiếp xúc với lập trình trên GPU)
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/1714c5b2-a069-4580-94d7-6d4f7ae07af1"
+    alt="light transport equation" 
+    style="width:75%">
+  <figcaption><p align="center">Đẳng thức vận chuyển ánh sáng (Light transport equation) (Credit: Physically Based Rendering:
+From Theory To Implementation)</p></figcaption>
+  </p>
+</figure>
+
+Ngoài ra, dù mình mong muốn dịch và mang lại nhiều kiến thức nhất có thể, nhưng bản chất của ngành vẫn luôn phát triển không ngừng nên việc
+đọc được các tài liệu nước ngoài cũng là rất quan trọng. Nếu các bạn có thể đọc được tiếng Anh, mình siêu khuyến khích các bạn hãy đọc qua 
+các nguồn sau đây (đây là những sách / hướng dẫn miễn phí mà bản thân mình đã đọc qua):
 - Channel Youtube về ứng dụng của đồ họa vi tính: <https://www.youtube.com/@Acerola_t/> \
-(Thích hợp cho những bạn muốn trầm trồ về những gì một kĩ sư đồ họa có thể làm được)
+(Độ khó:★ thích hợp cho những bạn muốn muốn có thêm động lực để chui đầu vào ngành này)
+- Hướng dẫn về đồ họa trên Unity: <https://catlikecoding.com/unity/tutorials/> \
+(Độ khó:★, thích hợp cho những bạn đã có kinh nghiệm hoặc muốn thử học Unity)
+- Hướng dẫn sử dụng OpenGl: <https://learnopengl.com/> \
+(Độ khó:★★, thích hợp cho người mới bắt đầu với API đồ họa, các bài viết có đầy đủ code để tham khảo và giải thích cụ thể từng khái niệm)
+- Hướng dẫn sơ bộ về shader (có tiếng Việt): <https://thebookofshaders.com/> \
+(Độ khó:★★, thích hợp cho những người hứng thú với shader, lập trình trên GPU cũng như muốn thử vẽ vời bằng toán)
+- Sách lý thuyết về ray tracing: <https://pbr-book.org/> \
+(Độ khó:★★★, thích hợp cho những bạn thích toán và đã có kiến thức cơ bản về lập trình nói chung)
