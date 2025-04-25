@@ -145,7 +145,7 @@ format ppm đơn giản. Đây là một ví dụ lấy từ Wikipedia:
 
 Hãy thử làm một đoạn code để xuất ra thứ tương tự:
 
-```diff
+```C++
 #include <iostream>
 
 int main() {
@@ -273,9 +273,9 @@ phần mềm bị freeze khi có loop vô tận cũng như các vấn đề khá
 Vì chúng ta sử dụng luồng output mặc định (<mark style="background-color: LightGray">std::cout</mark>) để xuất file nên chúng ta không thể sử dụng nó để ghi chú.
 Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (<mark style="background-color: LightGray">std::clog</mark>):
 
-```diff
+```C++
     for (int j = 0; j < image_height; ++j) {
-+       std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+        std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) {
             auto r = double(i) / (image_width-1);
             auto g = double(j) / (image_height-1);
@@ -289,7 +289,7 @@ Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (
         }
     }
 
-+   std::clog << "\rDone.                 \n";
+    std::clog << "\rDone.                 \n";
 ```
 
 <p style="text-align: center;"><b>Listing 3:</b> [main.cc] <i>Loop render chính với thanh tiến trình</i></p>
@@ -463,9 +463,9 @@ void write_color(std::ostream& out, const color& pixel_color) {
 
 Bây giờ ta có thể edit file main để dùng hai file header mới này:
 
-```diff
-+#include "color.h"
-+#include "vec3.h"
+```C++
+#include "color.h"
+#include "vec3.h"
 
 #include <iostream>
 
@@ -483,8 +483,8 @@ int main() {
     for (int j = 0; j < image_height; j++) {
         std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) {
-+           auto pixel_color = color(double(i)/(image_width-1), double(j)/(image_height-1), 0);
-+           write_color(std::cout, pixel_color);
+            auto pixel_color = color(double(i)/(image_width-1), double(j)/(image_height-1), 0);
+            write_color(std::cout, pixel_color);
         }
     }
 

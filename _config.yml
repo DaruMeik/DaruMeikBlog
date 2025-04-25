@@ -1,6 +1,15 @@
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-- jekyll-remote-theme
-  
-title: Meikumo's Blog
+title: DaruMeik's Blog
 description: Random CG-related stuffs translated for Vietnamese dev.
+
+remote_theme: jekyll/minima@d4d779a
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+minima:
+  skin: dark
+
+nav_pages:
+  - _pages/about.md
+  - _pages/translation.md

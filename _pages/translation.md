@@ -1,5 +1,5 @@
 ---
-title: Sách / Tài liệu về đồ họa vi tính
+title: Tài liệu
 permalink: "/TranslationStuffs/"
 ---
 
