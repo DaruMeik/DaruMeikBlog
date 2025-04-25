@@ -1,5 +1,6 @@
 ---
 title: Sách / Tài liệu về đồ họa vi tính
+permalink: "/TranslationStuffs/"
 ---
 
 - Dưới đây là những sách, tài liệu,... về đồ họa vi tính mà mình thấy khá hữu ích. 
