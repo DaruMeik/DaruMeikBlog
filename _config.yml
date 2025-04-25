@@ -4,3 +4,12 @@ minima:
   
 title: Meikumo's Blog
 description: Random CG-related stuffs translated for Vietnamese dev.
+
+#Others
+markdown: kramdown
+
+# Syntax highlighting
+highlighter: rouge
+kramdown:
+    input: GFM 
+    syntax_highlighter: rouge
