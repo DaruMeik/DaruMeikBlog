@@ -133,37 +133,48 @@ format ppm đơn giản. Đây là một ví dụ lấy từ Wikipedia:
     255 255 255
       0   0   0
 
-![120px-Tiny6pixel](https://github.com/user-attachments/assets/ed872af6-2102-4d9a-833d-796b90bc06b9)
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/ed872af6-2102-4d9a-833d-796b90bc06b9"
+    alt="Cel shading" 
+    style="width:25%">
+  <figcaption><p align="center"><b>Figure 1:</b> <i>PPM Example</i></p></figcaption>
+  </p>
+</figure>
 
 Hãy thử làm một đoạn code để xuất ra thứ tương tự:
-    
-    #include <iostream>
-    
-    int main() {
-    
-        // Hình ảnh
-    
-        int image_width = 256;
-        int image_height = 256;
-    
-        // Render
-    
-        std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
-    
-        for (int j = 0; j < image_height; j++) {
-            for (int i = 0; i < image_width; i++) {
-                auto r = double(i) / (image_width-1);
-                auto g = double(j) / (image_height-1);
-                auto b = 0.0;
-    
-                int ir = int(255.999 * r);
-                int ig = int(255.999 * g);
-                int ib = int(255.999 * b);
-    
-                std::cout << ir << ' ' << ig << ' ' << ib << '\n';
-            }
+
+```C++ #2
+#include <iostream>
+
+int main() {
+
+    // Hình ảnh
+
+    int image_width = 256;
+    int image_height = 256;
+
+    // Render
+
+    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+
+    for (int j = 0; j < image_height; j++) {
+        for (int i = 0; i < image_width; i++) {
+            auto r = double(i) / (image_width-1);
+            auto g = double(j) / (image_height-1);
+            auto b = 0.0;
+
+            int ir = int(255.999 * r);
+            int ig = int(255.999 * g);
+            int ib = int(255.999 * b);
+
+            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
+}
+```
+
+<p align="center"><b>Listing 1:</b> [main.cc] <i>Tạo bức ảnh đầu tiên của bạn</i></p>
 
 Có 1 số điểm cần lưu ý:
 1. Các pixel sẽ được viết theo thứ tự từng dòng.
@@ -206,7 +217,15 @@ File build hoàn chỉnh cũng như hướng dẫn sử dụng có thể tìm th
 
 Mở file sẽ hiển thị hình ảnh như thế này (thông qua ToyViewer trên mac, nếu phần mềm đọc ảnh của bạn không hỗ trợ đọc ppm thì bạn có thể search google "ppm viewer"):
 
-![img-1 01-first-ppm-image](https://github.com/user-attachments/assets/6f75b756-72c5-42de-ba20-92f4fcb10e2c)
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://github.com/user-attachments/assets/6f75b756-72c5-42de-ba20-92f4fcb10e2c"
+    alt="Cel shading" 
+    style="width:50%">
+  <figcaption><p align="center"><b>Image 1:</b> <i>Bức ảnh PPM đầu tiên</i></p></figcaption>
+  </p>
+</figure>
 
 Chúc mừng, đây chính là phần mềm "hello world" đầu tiên của bạn đối với đồ họa vi tính. 
 Bạn hãy thử mở file ảnh của bạn bằng một phần mềm biên tập văn bản để xem thử, nó sẽ có hình dạng như thế này:
@@ -229,14 +248,249 @@ Bạn hãy thử mở file ảnh của bạn bằng một phần mềm biên t�
     12 0 0
     ...
 
+<p style="text-align: center;"><b>Listing 2:</b> <i>Output của bức ảnh đầu tiên</i></p>
+
 Nếu file ảnh ppm của bạn không giống vậy thì hãy kiểm tra lại phần code phía trên. Nếu nó nhìn giống thế nhưng không render được, 
-thì có khả năng phần đuôi của từng dòng của bạn không chính xác hoặc có gì đó tương tự đã làm phần mềm đọc ảnh của bạn hiểu lầm. 
-Để debug lỗi này, bạn có thể sử dụng thử file test.ppm trong thư mục images của project này. Điều này bảo đảm phần mềm đọc ảnh của
-bạn đọc được format PPM cũng như dùng để đối chiếu với file của bạn
+thì có khả năng phần đuôi sau từng dòng lệnh của bạn không chính xác hoặc có gì đó tương tự đã làm phần mềm đọc ảnh của bạn hiểu lầm. 
+Để debug lỗi này, bạn có thể sử dụng thử file test.ppm [tại đây](https://github.com/RayTracing/raytracing.github.io/tree/release/images). 
+Điều này bảo đảm phần mềm đọc ảnh của　bạn đọc được format PPM cũng như dùng để đối chiếu với file của bạn.
 
 Một số người đọc đã báo cáo trục trặc khi đọc file xuất ra trên Windows. Trong trường hợp này, lỗi có thể xuất phát từ việc file PPM
-của bạn được viết dưới định dạng UTF-16 (thường xảy ra khi dùng PowerShell). Nếu gặp phải vấn đề này, bạn hãy tham khảo Discussion 1114.
+của bạn được viết dưới định dạng UTF-16 (thường xảy ra khi dùng PowerShell). Nếu gặp phải vấn đề này, bạn hãy tham khảo [Discussion 1114](https://github.com/RayTracing/raytracing.github.io/discussions/1114).
 
-If everything displays correctly, then you're pretty much done with system and IDE issues — everything in the remainder of this series uses this same simple mechanism for generated rendered images.
+Nếu mọi thứ đều hiển thị chính xác, bạn đã set up xong hệ thống và IDE - những phần còn lại trong quyển sách này đều dựa trên cùng nguyên lý để render hình ảnh.
 
-If you want to produce other image formats, I am a fan of stb_image.h, a header-only image library available on GitHub at https://github.com/nothings/stb. 
+Nếu bạn muốn xuất ảnh theo một định dạng khác, bạn có thể tham khảo <mark style="background-color: grey">stb_image.h</mark>. Đây là một library chỉ gồm file header, có thể download full trên [GitHub](https://github.com/nothings/stb).
+
+### 2.3 Tạo một thanh tiến trình
+---------------------
+
+Trước khi đến với phần tới của quyển sách, chúng ta hãy tạo thêm một thanh tiến trình khi xuất file.
+Đây là một giải pháp tiện lợi để theo dõi tiến trình của một render tốn nhiều thời gian, cũng như giúp phát hiện
+phần mềm bị freeze khi có loop vô tận cũng như các vấn đề khác.
+
+Vì chúng ta sử dụng luồng output mặc định (<mark style="background-color: grey">std::cout</mark>) để xuất file nên chúng ta không thể sử dụng nó để ghi chú.
+Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (<mark style="background-color: grey">std::clog</mark>):
+
+```C++ #2,16
+    for (int j = 0; j < image_height; ++j) {
+        std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+        for (int i = 0; i < image_width; i++) {
+            auto r = double(i) / (image_width-1);
+            auto g = double(j) / (image_height-1);
+            auto b = 0.0;
+
+            int ir = int(255.999 * r);
+            int ig = int(255.999 * g);
+            int ib = int(255.999 * b);
+
+            std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+        }
+    }
+
+    std::clog << "\rDone.                 \n";
+```
+
+<p style="text-align: center;"><b>Listing 3:</b> [main.cc] <i>Loop render chính với thanh tiến trình</i></p>
+
+Bây giờ mỗi khi chạy phần mềm, bạn sẽ thấy được một thanh tiến trình hiển thị số hàng còn lại cần phải render.
+Ở thời điểm hiện tại, sẽ có khả năng bạn không thấy được thanh này vì code bạn chạy quá nhanh. Nhưng đừng lo,
+bạn sẽ có rất nhiều cơ hội để ngắm thanh tiến trình này khi chúng ta mở rộng chức năng của ray tracer này.
+
+## 3 Class vec3
+---------------------
+
+Hầu hết các phần mềm đồ họa đều có một vài class để lưu trữ thông tin về vector hình học và màu. Trong nhiều
+hệ thống, các vector này là 4D (tọa độ 3D + tọa độ đồng nhất, hay giá trị RGB + giá trị alpha (trong suốt)).
+Chúng ta hiện chỉ cần 3 giá trị nên chúng ta sẽ sử dụng class <mark style="background-color: grey">vec3</mark> cho tất cả mọi thứ, bao gồm màu sắc, tọa độ, hướng, offset(độ lệch),...
+Vài người không thích cách sử dụng này vì nó không giúp ta né khỏi làm những thứ ngờ nghệch như trừ giá trị tòa độ bằng giá trị màu sắc.
+Đây là một ý kiến có lý, nhưng quyển sách này ưu tiên lựa chọn "ít code" nếu nó không sai một cách lộ liễu. Dù vậy, để phòng hờ, chúng ta
+vẫn sẽ tạo 2 tên khác cho class <mark style="background-color: grey">vec3</mark>: <mark style="background-color: grey">point3</mark> và 
+<mark style="background-color: grey">color</mark>. Vì đây chỉ là 2 cái tên khác của class vec3, bạn sẽ không được cảnh báo
+nếu vô tình dùng <mark style="background-color: grey">color</mark> cho một hàm mong đợi <mark style="background-color: grey">point3</mark>,
+và cũng không gì ngăn cản bạn cộng <mark style="background-color: grey">point3</mark> với <mark style="background-color: grey">color</mark>,
+nhưng 2 cái tên này sẽ giúp code dễ đọc và dễ hiểu hơn.
+
+Chúng ta sẽ định nghĩa class <mark style="background-color: grey">vec3</mark> trong một file header mới với tên <mark style="background-color: grey">vec3.h</mark>,
+và sẽ định nghĩa luôn một số hàm chức năng của nó.
+
+```C++ 
+#ifndef VEC3_H
+#define VEC3_H
+
+#include <cmath>
+#include <iostream>
+
+class vec3 {
+public:
+    double e[3];
+
+    vec3() : e{0,0,0} {}
+    vec3(double e0, double e1, double e2) : e{e0, e1, e2} {}
+
+    double x() const { return e[0]; }
+    double y() const { return e[1]; }
+    double z() const { return e[2]; }
+
+    vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
+    double operator[](int i) const { return e[i]; }
+    double& operator[](int i) { return e[i]; }
+
+    vec3& operator+=(const vec3& v) {
+        e[0] += v.e[0];
+        e[1] += v.e[1];
+        e[2] += v.e[2];
+        return *this;
+    }
+
+    vec3& operator*=(double t) {
+        e[0] *= t;
+        e[1] *= t;
+        e[2] *= t;
+        return *this;
+    }
+
+    vec3& operator/=(double t) {
+        return *this *= 1/t;
+    }
+
+    double length() const {
+        return std::sqrt(length_squared());
+    }
+
+    double length_squared() const {
+        return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
+    }
+};
+
+// point3 chỉ là một tên khác cho class vec3. Nó được sử dụng để làm code dễ đọc hơn
+using point3 = vec3;
+
+
+// Các hàm toán của vector
+
+inline std::ostream& operator<<(std::ostream& out, const vec3& v) {
+    return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
+}
+
+inline vec3 operator+(const vec3& u, const vec3& v) {
+    return vec3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
+}
+
+inline vec3 operator-(const vec3& u, const vec3& v) {
+    return vec3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
+}
+
+inline vec3 operator*(const vec3& u, const vec3& v) {
+    return vec3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
+}
+
+inline vec3 operator*(double t, const vec3& v) {
+    return vec3(t*v.e[0], t*v.e[1], t*v.e[2]);
+}
+
+inline vec3 operator*(const vec3& v, double t) {
+    return t * v;
+}
+
+inline vec3 operator/(const vec3& v, double t) {
+    return (1/t) * v;
+}
+
+// Tích vô hướng
+inline double dot(const vec3& u, const vec3& v) {
+    return u.e[0] * v.e[0]
+        + u.e[1] * v.e[1]
+        + u.e[2] * v.e[2];
+}
+
+// Tích có hướng
+inline vec3 cross(const vec3& u, const vec3& v) {
+    return vec3(u.e[1] * v.e[2] - u.e[2] * v.e[1],
+                u.e[2] * v.e[0] - u.e[0] * v.e[2],
+                u.e[0] * v.e[1] - u.e[1] * v.e[0]);
+}
+
+inline vec3 unit_vector(const vec3& v) {
+    return v / v.length();
+}
+
+#endif
+```
+
+<p style="text-align: center;"><b>Listing 4:</b> [vec3.h] <i>Định nghĩa của vec3 và các hàm chức năng</i></p>
+
+Chúng ta sử dụng <mark style="background-color: grey">double</mark> ở đây nhưng một số ray tracer khác sẽ sử dụng <mark style="background-color: grey">float</mark>.
+<mark style="background-color: grey">double</mark> có phạm vi và độ chính xác cao hơn, nhưng size của lớn gấp đôi <mark style="background-color: grey">float</mark> .
+Sự khác biệt về size này là yếu tố quan trọng nếu bạn code dưới điều kiện khắt khe về bộ nhớ (ví dụ như shader phần cứng). Không có đáp án sai nên hãy sử dụng
+cái bạn thích.
+
+### 3.1 Hàm chức năng cho màu sắc
+---------------------
+
+Chúng ta sẽ sử dụng hàm <mark style="background-color: grey">vec3</mark> để viết một file header mới với tên <mark style="background-color: grey">color.h</mark>.
+Chúng ta sẽ định nghĩa một hàm chức năng có nhiệm vụ xuất màu của một pixel lên luồng output mặc định.
+
+```C++ 
+#ifndef COLOR_H
+#define COLOR_H
+
+#include "vec3.h"
+
+#include <iostream>
+
+using color = vec3;
+
+void write_color(std::ostream& out, const color& pixel_color) {
+    auto r = pixel_color.x();
+    auto g = pixel_color.y();
+    auto b = pixel_color.z();
+
+    // Chuyển đổi số thực trong khoảng [0,1] sang byte trong khoảng [0,255].
+    int rbyte = int(255.999 * r);
+    int gbyte = int(255.999 * g);
+    int bbyte = int(255.999 * b);
+
+    // Xuất màu ra luồng output
+    out << rbyte << ' ' << gbyte << ' ' << bbyte << '\n';
+}
+
+#endif
+```
+
+<p style="text-align: center;"><b>Listing 5:</b> [color.h] <i>Hàm chức năng của màu sắc</i></p>
+
+Bây giờ ta có thể edit file main để dùng hai file header mới này:
+
+```C++
+#include "color.h"
+#include "vec3.h"
+
+#include <iostream>
+
+int main() {
+
+    // Image
+
+    int image_width = 256;
+    int image_height = 256;
+
+    // Render
+
+    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+
+    for (int j = 0; j < image_height; j++) {
+        std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+        for (int i = 0; i < image_width; i++) {
+            auto pixel_color = color(double(i)/(image_width-1), double(j)/(image_height-1), 0);
+            write_color(std::cout, pixel_color);
+        }
+    }
+
+    std::clog << "\rDone.                 \n";
+}
+```
+
+<p style="text-align: center;"><b>Listing 6:</b> [main.cc] <i>Code cuối cùng cho hình ảnh PPM đầu tiên</i></p>
+
+Tại đây, bạn sẽ có một file ảnh giống với với phần trước.
