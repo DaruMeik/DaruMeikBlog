@@ -7,6 +7,8 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+highlighter: rouge
+
 minima:
   skin: classic
 

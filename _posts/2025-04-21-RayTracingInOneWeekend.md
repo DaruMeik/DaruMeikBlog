@@ -291,7 +291,6 @@ Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (
     }
 
 +   std::clog << "\rDone.                 \n";
-
 ```
 
 <p style="text-align: center;"><b>Listing 3:</b> [main.cc] <i>Loop render chính với thanh tiến trình</i></p>
@@ -465,6 +464,8 @@ void write_color(std::ostream& out, const color& pixel_color) {
 
 Bây giờ ta có thể edit file main để dùng hai file header mới này:
 
+<pre> {% raw %} {% highlight ruby linenos highlight="3" %} def hello_world puts 'Hello, world!' puts 'This line will be highlighted' puts 'Goodbye, world!' end {% endhighlight %} {% endraw %} </pre>
+
 ```diff
 +#include "color.h"
 +#include "vec3.h"
@@ -492,7 +493,6 @@ int main() {
 
     std::clog << "\rDone.                 \n";
 }
-
 ```
 
 <p style="text-align: center;"><b>Listing 6:</b> [main.cc] <i>Code cuối cùng cho hình ảnh PPM đầu tiên</i></p>
