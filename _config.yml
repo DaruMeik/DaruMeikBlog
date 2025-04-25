@@ -8,7 +8,7 @@ plugins:
   - jekyll-seo-tag
 
 minima:
-  skin: dark
+  skin: classic
 
 nav_pages:
   - about.md
