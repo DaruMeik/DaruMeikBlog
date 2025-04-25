@@ -274,7 +274,7 @@ Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (
 
 ```diff
     for (int j = 0; j < image_height; ++j) {
-+        std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
++       std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) {
             auto r = double(i) / (image_width-1);
             auto g = double(j) / (image_height-1);
@@ -288,7 +288,7 @@ Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (
         }
     }
 
-+    std::clog << "\rDone.                 \n";
++   std::clog << "\rDone.                 \n";
 ```
 
 <p style="text-align: center;"><b>Listing 3:</b> [main.cc] <i>Loop render chính với thanh tiến trình</i></p>
@@ -482,8 +482,8 @@ int main() {
     for (int j = 0; j < image_height; j++) {
         std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
         for (int i = 0; i < image_width; i++) {
-+            auto pixel_color = color(double(i)/(image_width-1), double(j)/(image_height-1), 0);
-+            write_color(std::cout, pixel_color);
++           auto pixel_color = color(double(i)/(image_width-1), double(j)/(image_height-1), 0);
++           write_color(std::cout, pixel_color);
         }
     }
 
