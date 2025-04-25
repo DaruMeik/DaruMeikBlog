@@ -291,6 +291,7 @@ Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (
     }
 
 +   std::clog << "\rDone.                 \n";
+
 ```
 
 <p style="text-align: center;"><b>Listing 3:</b> [main.cc] <i>Loop render chính với thanh tiến trình</i></p>
@@ -491,6 +492,7 @@ int main() {
 
     std::clog << "\rDone.                 \n";
 }
+
 ```
 
 <p style="text-align: center;"><b>Listing 6:</b> [main.cc] <i>Code cuối cùng cho hình ảnh PPM đầu tiên</i></p>
