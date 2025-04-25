@@ -1,10 +1,11 @@
 ---
 title: Ray tracing chỉ với 2 ngày cuối tuần. (WIP)
+permalink: "/RayTracingInOneWeekend/"
 ---
 ## Nguồn sách: 
 [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
-Dịch bởi [Meikumo]({https://darumeik.github.io/DaruMeikBlog/about.html}).
+Dịch bởi [Meikumo](https://darumeik.github.io/DaruMeikBlog/about.html).
 
 ## Cảm nhận của người dịch:
 Đây là sách hướng dẫn cơ bản về khái niệm ray tracing. Ưu điểm của sách này là rất dễ hiểu để làm theo vì nó không sử dụng API nào. Nhưng cũng vì vậy, hướng dẫn này hơi mang tính lý thuyết.

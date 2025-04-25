@@ -1,5 +1,10 @@
 ---
 title: Homepage
 ---
-- Welcome to Meik's personal blog. Most posts here will be translated tutorial related to CG knowledge for Vietnamese, but I will add some tutorials in English from time to time.
-- Xin chào mọi người đến với blog cá nhân của Meik. Mình chủ yếu chia sẽ và dịch một số bài viết hay liên quan đến mảng đồ họa máy tính tại page này.
+- Xin chào mọi người đến với page cá nhân của Meik. Page này được tạo lên nhằm mục đích chia sẻ các kiến thức liên quan đên ngành đồ họa vi tính (Computer Graphics) đến với các lập trình viên tại Việt Nam.
+Nội dung sẽ gồm những bài blog chia sẽ của mình cũng như những bài dịch các tài liệu liên quan đến đồ họa vi tính.
+- Thông tin liên hệ: [About me](https://darumeik.github.io/DaruMeikBlog/about.html)
+## Blog nhảm nhí của Meik
+### [Kĩ sư đồ họa là gì? Lập trình viên hay là họa sĩ?](https://darumeik.github.io/DaruMeikBlog/WhatIsGraphicsProgrammer/)
+## Dịch thuật 
+### [Ray tracing chỉ với 2 ngày cuối tuần. (WIP)](https://darumeik.github.io/DaruMeikBlog/RayTracingInOneWeekend/)

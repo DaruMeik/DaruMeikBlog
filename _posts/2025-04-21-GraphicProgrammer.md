@@ -1,5 +1,6 @@
 ---
 title: Kĩ sư đồ họa là gì? Lập trình viên hay là họa sĩ?
+permalink: "/WhatIsGraphicsProgrammer/"
 ---
 
 Việc hiển thị một hình ảnh trên máy tính của bạn là cả một phép màu. Phép màu đó đến được với bạn là nhờ vào công sức của những kĩ sư đồ họa (graphics programmer). 
