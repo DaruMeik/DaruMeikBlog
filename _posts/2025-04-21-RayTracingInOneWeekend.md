@@ -464,7 +464,7 @@ void write_color(std::ostream& out, const color& pixel_color) {
 
 Bây giờ ta có thể edit file main để dùng hai file header mới này:
 
-{% highlight ruby linenos highlight="3" %} def hello_world puts 'Hello, world!' puts 'This line will be highlighted' puts 'Goodbye, world!' end {% endhighlight %}
+{% highlight ruby linenos highlight="3" %}  def hello_world puts 'Hello, world!' puts 'This line will be highlighted' puts 'Goodbye, world!' end {% endhighlight %}
 
 ```diff
 +#include "color.h"
