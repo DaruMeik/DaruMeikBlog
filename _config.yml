@@ -11,5 +11,5 @@ minima:
   skin: dark
 
 nav_pages:
-  - _pages/about.md
-  - _pages/translation.md
+  - about.md
+  - translation.md

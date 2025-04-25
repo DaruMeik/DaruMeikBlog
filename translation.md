@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Tài liệu
 permalink: "/TranslationStuffs/"
 ---
@@ -8,7 +9,4 @@ permalink: "/TranslationStuffs/"
 Mục đích dịch sách là vì mình muốn mọi người có thể dễ dàng tiếp cận kiến thức hơn nên nếu có bất kì feedback gì thì
 hãy thoải mái liên hệ với [mình](https://darumeik.github.io/DaruMeikBlog/about.html).
 
-## Contact:
-- Email: <darukun.desu@gmail.com>
-- Twitter: [@meik](https://x.com/mei_kumo)
-- Github: <https://github.com/DaruMeik/>
+### [Ray tracing chỉ với 2 ngày cuối tuần. (WIP)](https://darumeik.github.io/DaruMeikBlog/RayTracingInOneWeekend/)

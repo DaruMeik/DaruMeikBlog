@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Kĩ sư đồ họa là gì? Lập trình viên hay là họa sĩ?
 permalink: "/WhatIsGraphicsProgrammer/"
 ---

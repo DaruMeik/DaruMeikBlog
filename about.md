@@ -1,6 +1,8 @@
 ---
+layout: page
 title: About me
 permalink: "/About/"
+
 ---
 
 - Xin chào mọi người. Mình là Meik (aka DaruMeik, Meikumo,...). Mình là một du học sinh Nhật chuyên ngành vi tính và đồ họa. Dù kiến thức còn hạn hẹp nhưng vì rất thích game và đồ họa, mình bắt đầu viết blog này và mong những kiến thức đó sẽ dễ tiếp cận hơn cho những người mới bắt đầu.

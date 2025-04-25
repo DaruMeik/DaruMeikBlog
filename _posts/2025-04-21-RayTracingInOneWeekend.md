@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Ray tracing chỉ với 2 ngày cuối tuần. (WIP)
 permalink: "/RayTracingInOneWeekend/"
 ---
