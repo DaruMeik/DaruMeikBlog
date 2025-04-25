@@ -1,6 +1,4 @@
-remote_theme: pages-themes/primer@v0.2.0
-plugins:
-- jekyll-remote-theme
+theme: primer
   
 title: Meikumo's Blog
 description: Random CG-related stuffs translated for Vietnamese dev.
