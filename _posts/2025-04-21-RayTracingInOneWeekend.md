@@ -260,7 +260,7 @@ của bạn được viết dưới định dạng UTF-16 (thường xảy ra kh
 
 Nếu mọi thứ đều hiển thị chính xác, bạn đã set up xong hệ thống và IDE - những phần còn lại trong quyển sách này đều dựa trên cùng nguyên lý để render hình ảnh.
 
-Nếu bạn muốn xuất ảnh theo một định dạng khác, bạn có thể tham khảo <mark style="background-color: grey">stb_image.h</mark>. Đây là một library chỉ gồm file header, có thể download full trên [GitHub](https://github.com/nothings/stb).
+Nếu bạn muốn xuất ảnh theo một định dạng khác, bạn có thể tham khảo <mark style="background-color: LightGray">stb_image.h</mark>. Đây là một library chỉ gồm file header, có thể download full trên [GitHub](https://github.com/nothings/stb).
 
 ### 2.3 Tạo một thanh tiến trình
 ---------------------
@@ -269,8 +269,8 @@ Trước khi đến với phần tới của quyển sách, chúng ta hãy tạo
 Đây là một giải pháp tiện lợi để theo dõi tiến trình của một render tốn nhiều thời gian, cũng như giúp phát hiện
 phần mềm bị freeze khi có loop vô tận cũng như các vấn đề khác.
 
-Vì chúng ta sử dụng luồng output mặc định (<mark style="background-color: grey">std::cout</mark>) để xuất file nên chúng ta không thể sử dụng nó để ghi chú.
-Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (<mark style="background-color: grey">std::clog</mark>):
+Vì chúng ta sử dụng luồng output mặc định (<mark style="background-color: LightGray">std::cout</mark>) để xuất file nên chúng ta không thể sử dụng nó để ghi chú.
+Thay vào đó, chúng ta sẽ sử dụng luồng output chuyên cho ghi chú (<mark style="background-color: LightGray">std::clog</mark>):
 
 ```diff
     for (int j = 0; j < image_height; ++j) {
@@ -302,16 +302,16 @@ bạn sẽ có rất nhiều cơ hội để ngắm thanh tiến trình này khi
 
 Hầu hết các phần mềm đồ họa đều có một vài class để lưu trữ thông tin về vector hình học và màu. Trong nhiều
 hệ thống, các vector này là 4D (tọa độ 3D + tọa độ đồng nhất, hay giá trị RGB + giá trị alpha (trong suốt)).
-Chúng ta hiện chỉ cần 3 giá trị nên chúng ta sẽ sử dụng class <mark style="background-color: grey">vec3</mark> cho tất cả mọi thứ, bao gồm màu sắc, tọa độ, hướng, offset(độ lệch),...
+Chúng ta hiện chỉ cần 3 giá trị nên chúng ta sẽ sử dụng class <mark style="background-color: LightGray">vec3</mark> cho tất cả mọi thứ, bao gồm màu sắc, tọa độ, hướng, offset(độ lệch),...
 Vài người không thích cách sử dụng này vì nó không giúp ta né khỏi làm những thứ ngờ nghệch như trừ giá trị tòa độ bằng giá trị màu sắc.
 Đây là một ý kiến có lý, nhưng quyển sách này ưu tiên lựa chọn "ít code" nếu nó không sai một cách lộ liễu. Dù vậy, để phòng hờ, chúng ta
-vẫn sẽ tạo 2 tên khác cho class <mark style="background-color: grey">vec3</mark>: <mark style="background-color: grey">point3</mark> và 
-<mark style="background-color: grey">color</mark>. Vì đây chỉ là 2 cái tên khác của class vec3, bạn sẽ không được cảnh báo
-nếu vô tình dùng <mark style="background-color: grey">color</mark> cho một hàm mong đợi <mark style="background-color: grey">point3</mark>,
-và cũng không gì ngăn cản bạn cộng <mark style="background-color: grey">point3</mark> với <mark style="background-color: grey">color</mark>,
+vẫn sẽ tạo 2 tên khác cho class <mark style="background-color: LightGray">vec3</mark>: <mark style="background-color: LightGray">point3</mark> và 
+<mark style="background-color: LightGray">color</mark>. Vì đây chỉ là 2 cái tên khác của class vec3, bạn sẽ không được cảnh báo
+nếu vô tình dùng <mark style="background-color: LightGray">color</mark> cho một hàm mong đợi <mark style="background-color: LightGray">point3</mark>,
+và cũng không gì ngăn cản bạn cộng <mark style="background-color: LightGray">point3</mark> với <mark style="background-color: LightGray">color</mark>,
 nhưng 2 cái tên này sẽ giúp code dễ đọc và dễ hiểu hơn.
 
-Chúng ta sẽ định nghĩa class <mark style="background-color: grey">vec3</mark> trong một file header mới với tên <mark style="background-color: grey">vec3.h</mark>,
+Chúng ta sẽ định nghĩa class <mark style="background-color: LightGray">vec3</mark> trong một file header mới với tên <mark style="background-color: LightGray">vec3.h</mark>,
 và sẽ định nghĩa luôn một số hàm chức năng của nó.
 
 ```C++ 
@@ -420,15 +420,15 @@ inline vec3 unit_vector(const vec3& v) {
 
 <p style="text-align: center;"><b>Listing 4:</b> [vec3.h] <i>Định nghĩa của vec3 và các hàm chức năng</i></p>
 
-Chúng ta sử dụng <mark style="background-color: grey">double</mark> ở đây nhưng một số ray tracer khác sẽ sử dụng <mark style="background-color: grey">float</mark>.
-<mark style="background-color: grey">double</mark> có phạm vi và độ chính xác cao hơn, nhưng size của lớn gấp đôi <mark style="background-color: grey">float</mark> .
+Chúng ta sử dụng <mark style="background-color: LightGray">double</mark> ở đây nhưng một số ray tracer khác sẽ sử dụng <mark style="background-color: LightGray">float</mark>.
+<mark style="background-color: LightGray">double</mark> có phạm vi và độ chính xác cao hơn, nhưng size của lớn gấp đôi <mark style="background-color: LightGray">float</mark> .
 Sự khác biệt về size này là yếu tố quan trọng nếu bạn code dưới điều kiện khắt khe về bộ nhớ (ví dụ như shader phần cứng). Không có đáp án sai nên hãy sử dụng
 cái bạn thích.
 
 ### 3.1 Hàm chức năng cho màu sắc
 ---------------------
 
-Chúng ta sẽ sử dụng hàm <mark style="background-color: grey">vec3</mark> để viết một file header mới với tên <mark style="background-color: grey">color.h</mark>.
+Chúng ta sẽ sử dụng hàm <mark style="background-color: LightGray">vec3</mark> để viết một file header mới với tên <mark style="background-color: LightGray">color.h</mark>.
 Chúng ta sẽ định nghĩa một hàm chức năng có nhiệm vụ xuất màu của một pixel lên luồng output mặc định.
 
 ```C++ 
