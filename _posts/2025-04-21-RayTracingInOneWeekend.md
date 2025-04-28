@@ -19,6 +19,11 @@ Ngoài ra, những chữ được in đậm trong các công thức toán sẽ �
 Nếu bạn gặp vấn đề với code, có câu hỏi, hoặc muốn chia sẽ ý tưởng cũng như thành quả của bạn, đừng ngại ngừng liên hệ với mình qua mail. Mình dịch quyển sách này hoàn toàn phi lợi nhuận
 nên sẽ rất vui nếu nhận được phản hồi.
 
+## Lưu ý:
+Page này vẫn đang work in progress, sẽ có một số link chưa hoạt động / bài viết chưa được hoàn chỉnh, mong các bạn thông cảm cho.
+
+Tiến độ hiện tại: Dịch hết chap 4 trên tổng 16 chap.
+
 ---
 
 # Ray tracing chỉ với 2 ngày cuối tuần
