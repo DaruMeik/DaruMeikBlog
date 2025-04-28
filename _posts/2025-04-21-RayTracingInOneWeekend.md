@@ -6,13 +6,15 @@ permalink: "/RayTracingInOneWeekend/"
 ## Nguồn sách: 
 [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
-Dịch bởi [Meikumo](https://darumeik.github.io/DaruMeikBlog/about.html).
+Dịch bởi [Meikumo](https://darumeik.github.io/DaruMeikBlog/About/).
 
 ## Cảm nhận của người dịch:
 Đây là sách hướng dẫn cơ bản về khái niệm ray tracing. Ưu điểm của sách này là rất dễ hiểu để làm theo vì nó không sử dụng API nào. Nhưng cũng vì vậy, hướng dẫn này hơi mang tính lý thuyết.
 Mình khuyến khích các bạn hãy thử áp dụng kiến thức này để làm một ray tracer đơn giản trên Unity, Godot, Unreal Engine, Shadertoy,...
 
 Một số từ chuyên ngành như ray tracing mình không dịch trực tiếp ra tiếng Việt, các bạn tham khảo [page này (WIP)]() để xem chú thích kĩ hơn của những từ chuyên ngành đó.
+
+Ngoài ra, những chữ được in đậm trong các công thức toán sẽ ám chỉ một vector (đa phần là 3D vector). Còn những giá trị viết thường sẽ ám chỉ một scalar.
 
 Nếu bạn gặp vấn đề với code, có câu hỏi, hoặc muốn chia sẽ ý tưởng cũng như thành quả của bạn, đừng ngại ngừng liên hệ với mình qua mail. Mình dịch quyển sách này hoàn toàn phi lợi nhuận
 nên sẽ rất vui nếu nhận được phản hồi.
@@ -138,7 +140,7 @@ format ppm đơn giản. Đây là một ví dụ lấy từ Wikipedia:
 <figure>
 <p align="center" width="100%">
   <img src="https://github.com/user-attachments/assets/ed872af6-2102-4d9a-833d-796b90bc06b9"
-    alt="Cel shading" 
+    alt="Figure1" 
     style="width:25%">
   <figcaption><p align="center"><b>Figure 1:</b> <i>PPM Example</i></p></figcaption>
   </p>
@@ -218,7 +220,6 @@ Trên Mac hoặc Linux, đối với bản release build, bạn có thể chạy
 File build hoàn chỉnh cũng như hướng dẫn sử dụng có thể tìm thấy trong mục README của project.
 
 Mở file sẽ hiển thị hình ảnh như thế này (thông qua ToyViewer trên mac, nếu phần mềm đọc ảnh của bạn không hỗ trợ đọc ppm thì bạn có thể search google "ppm viewer"):
-
 
 <figure>
 <p align="center" width="100%">
@@ -473,7 +474,7 @@ Bây giờ ta có thể edit file main để dùng hai file header mới này:
  
  int main() {
  
-     // Image
+     // Hình ảnh
  
      int image_width = 256;
      int image_height = 256;
@@ -496,4 +497,263 @@ Bây giờ ta có thể edit file main để dùng hai file header mới này:
 
 <p style="text-align: center;"><b>Listing 6:</b> [main.cc] <i>Code cuối cùng cho hình ảnh PPM đầu tiên</i></p>
 
-Tại đây, bạn sẽ có một file ảnh giống với với phần trước.
+Nếu thực hiện chính xác, bạn sẽ xuất được hình ảnh như trước.
+
+## 4 Ray, Camera và Background
+---------------------
+
+### 4.1 Class ray
+---------------------
+Một điểm chung mà tất cả mọi ray tracer đều có là một class ray và phép toán tính màu sắc khi dò theo tia. Ta có thể miêu tả một tia sáng dưới dạng $\symbf{P}(t) = \symbf{A}t+\symbf{b}$. Tại đây, $\symbf{P}$ là tọa độ 3D dọc theo một đường thẳng, $\symbf{A} là tọa độ tâm của tia và $\symbf{b} là hướng của tia. Tham số $t$ là một số thực (`double` trong code). Khi ta thay đổi $t$ thì tọa độ $\symbf{P}(t)$ sẽ di chuyển trên một đường thẳng dọc theo tia sáng. Bạn có thể dùng giá trị $-t$ để di chuyển đến bất kì điểm nào trên đường thẳng đó. Với giá trị dương cho t, chúng ta chỉ có thể di chuyển từ tâm $A$ theo một hướng, và chúng ta hay gọi nó là nửa đường thẳng hoặc một tia.
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://raytracing.github.io/images/fig-1.02-lerp.jpg"
+    alt="Figure2" 
+    style="width:50%">
+  <figcaption><p align="center"><b>Figure 2:</b> <i>Nội suy tuyến tính (Linear interpolation)</i></p></figcaption>
+  </p>
+</figure>
+
+Chúng ta có thể tạo một class dựa trên lý thuyết trên, biến hàm $\symbf{P}(t)$ thành một hàm chúng t sẽ gọi ở `ray::at(t)`:
+
+```C++
+#ifndef RAY_H
+#define RAY_H
+
+#include "vec3.h"
+
+class ray {
+  public:
+    ray() {}
+
+    ray(const point3& origin, const vec3& direction) : orig(origin), dir(direction) {}
+
+    const point3& origin() const  { return orig; }
+    const vec3& direction() const { return dir; }
+
+    point3 at(double t) const {
+        return orig + t*dir;
+    }
+
+  private:
+    point3 orig;
+    vec3 dir;
+};
+
+#endif
+```
+<p style="text-align: center;"><b>Listing 7:</b> [ray.h] <i>Class ray</i></p>
+
+(Cho những bạn không quen với C++: hàm `ray::origin()` và hàm `ray::direction()` đều trả về giá trị của một tham chiếu bất biến (immutable reference). 
+Bạn có thể chỉnh nó sang tham chiếu trực tiếp, hoặc tạo ra một giá trị copy có thể thay đổi được tùy theo nhu cầu.)
+
+### 4.1 Phát tia vào scene:
+---------------------
+Bây giờ chúng ta đã sẵn sàng để làm một ray tracer. Về nguyên tắc, một ray tracer sẽ phát tia qua từng pixel và tính toán màu sắc thấy được dọc theo tia. Các bước cụ thể bao gồm:
+ 1. Tính toán tia phát ra từ "mắt" đến các pixel
+ 1. Xác định vật thể tia sáng tiếp xúc
+ 1. Tính toán màu sắc dựa trên điểm giao nhau gần nhất
+
+Khi lập trình một ray tracer, tôi thường tạo tạm một camera đơn giản để chạy nhanh code.
+
+Tôi thường gặp rắc rối khi debug với ảnh vuông vì tôi chuyển vị $x$ với $y$ liên tục, nên ở đây ta sẽ dùng ảnh không vuông. Ảnh vuông có tỉ lệ 1:1 vì chiều dọc bằng với chiều ngang.
+Do chúng ta muốn một ảnh không vuông, chúng ta sẽ chọn tỉ lệ 16:9 ở đây bởi vì nó thông dụng. Ảnh tỉ lệ 16:9 nghĩa là tỉ lệ giữa chiều ngang và chiều dọc là 16:9. Nói cách khác,
+với một bức ảnh tỉ lệ 16:9:
+
+<p style="text-align: center;">$\text{chiều ngang}/\text{chiều dọc} = 16/9 = 1.7778$</p>
+
+Ví dụ cụ thể, một bức ảnh với chiều ngang 800 pixels và chiều dọc 400 pixels sẽ có tỉ lệ là 2:1.
+
+Tỉ lệ (aspect ratio) của một bức ảnh có thể tính được từ chiều ngang (width) và chiều dọc (height) của bức ảnh.
+Tuy nhiên, vì ta đã có sẵn tỉ lệ mong muốn, chúng ta có thể dùng chiều ngang và
+tỉ lệ để tính ra chiều dọc. Với phương pháp này, ta có thể dễ dàng thay đổi size
+của bức ảnh bằng cách thay đổi giá trị chiều ngang và không làm ảnh hưởng tới tỉ
+lệ ảnh. Tuy nhiên, chúng ta cũng phải bảo đảm chiều dọc khi tính ra phải có giá trị
+lớn hơn 1 pixel.
+
+Ngoài việc chuẩn bị không gian pixel để chúng ta render ảnh, chúng ta cũng phải chuẩn bị
+một khung ảnh (viewport) để tiếp nhận tia trong scene của mình. Một khung ảnh là một hình
+tứ giác ảo tồn tại trong thế giới 3D. Khung ảnh chứa các ô pixel (pixel grid) với tọa độ, tương
+ứng với từng pixel. Nếu ta xếp các pixel cách đều nhau cả chiều dọc lẫn chiều ngang, thì
+các ô nhỏ bao bọc chúng sẽ có tỉ lệ giống với tỉ lệ ảnh. Khoảng cách giữa hai pixel
+cận nhau được gọi là pixel spacing, và pixel thường được xem là hình vuông.
+
+Chúng ta sẽ chọn chiều dọc khung hình là 2.0, và thay đổi chiều ngang khung hình để có được tỉ lệ mong muốn.
+Đây là một ví dụ về đoạn code ta sẽ viết:
+
+```C++
+auto aspect_ratio = 16.0 / 9.0;
+int image_width = 400;
+
+// Tính toán chiều dọc bức ảnh và bảo đảm nó không bé hơn 1
+int image_height = int(image_width / aspect_ratio);
+image_height = (image_height < 1) ? 1 : image_height;
+
+// Chiều ngang viewport bé hơn một cũng không sao vì giá trị của nó là số thực
+auto viewport_height = 2.0;
+auto viewport_width = viewport_height * (double(image_width)/image_height);
+```
+<p style="text-align: center;"><b>Listing 8:</b> <i>Set up trước khi render</i></p>
+
+Ở đây, chúng ta không dùng `aspect_ratio` để tính `viewport_width` vì giá trị `aspect_ratio` là tỉ lệ lí tưởng, nhưng
+không phải là tỉ lệ chính xác giữa `image_width` và `image_height`. Nếu giá trị của `image_height` là số thực thay vì
+là số tự nhiên, chúng ta có thể dùng trực tiếp `aspect_ratio`. Nhưng tỉ lệ thật giữa `image_width` và `image_height`
+sẽ bị ảnh hưởng bởi 2 nguyên nhân sau: một là `image_height` được làm tròn xuống tới số tự nhiên gần nhất và 
+hai là `image_height` không được bé hơn 1.
+
+Lưu ý rằng `aspect_ratio` là một giá trị lí tưởng, và chúng ta chỉ có thể xấp xỉ gần nhất có thể với chiều ngang và dọc mang giá trị số tự nhiên. 
+Để tỉ lệ khung hình giống chính xác với tỉ lệ ảnh, chúng ta sử dụng tỉ lệ ta tính được để quyết định chiều ngang của khung hình.
+
+Tiếp theo, chúng ta sẽ định nghĩa tâm của camera: một điểm trong không gian 3d, nơi bắt đầu của tất cả mọi tia 
+(điểm nay cũng hay được gọi là tâm mắt). Vector từ tâm camera đến tâm khung hình sẽ vuông góc với khung hình.
+Chúng ta sẽ tạm đặt khoảng cách giữa khung hình và tâm camera là 1 đơn vị. Khoảng cách này thường được biết đến với
+cái tên tiêu cự (focal length).
+
+Để đơn giản hóa, chúng ta sẽ đặt tâm camera tại (0, 0, 0). Chúng ta cũng sẽ set trục y hướng lên, trục x hướng phải, và âm của trục z chỉ về hướng nhìn.
+(Dựa trên quy tắc bàn tay phải)
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://raytracing.github.io/images/fig-1.03-cam-geom.jpg"
+    alt="Figure3" 
+    style="width:50%">
+  <figcaption><p align="center"><b>Figure 3:</b> <i>Camera và khung hình</i></p></figcaption>
+  </p>
+</figure>
+
+Tiếp theo là một phần hơi phức tạp. Cấu trúc hình học của không gian 3D của chúng ta được thiết lập như trên, 
+nhưng nó xung đột với tọa độ ảnh ta đã thiết lập phần trước, nơi mà pixel vị trí 0 sẽ nằm gốc trên bên trái và chạy ngang và
+dọc đến pixel cuối cùng ở gốc dưới bên phải. Điều này cũng đồng nghĩa với việc trục y của ảnh bị ngược: giá trị y tăng khi
+đi xuống phía dưới pixel.
+
+Khi ta scan để xuất ảnh, chúng ta sẽ bắt đầu từ phía trên bên trái (pixel tại (0,0)), scan từ trái sang phải của từng hàng, 
+rồi scan từ trên xuống dưới từng hàng. Để giúp định vị các ô pixel, chúng ta sẽ sử dụng vector $\symbf{V_u}$ chạy
+từ trái sang phải, và vector $\symbf{V_v}$ chạy từ trên xuống dưới.
+
+<figure>
+<p align="center" width="100%">
+  <img src="https://raytracing.github.io/images/fig-1.04-pixel-grid.jpg"
+    alt="Image4" 
+    style="width:50%">
+  <figcaption><p align="center"><b>Image 4:</b> <i>Khung hình và các ô pixel</i></p></figcaption>
+  </p>
+</figure>
+
+Trong hình trên, chúng ta có khung hình, các ô pixel cho một tấm hình 7x5, 
+góc trên bên trái $\symbf{Q}$ của khung hình, vị trí của pixel $_symbf{P}_0,0$, 
+vector $\symbf{V_u}$ (`viewport_u`), vector $\symbf{V_v}$ (`viewport_v`),
+và vector delta $\Delta u$ và $\Delta v$.
+
+Dưới đây là phần code cho camera từ những lý thuyết trên. Chúng ta cũng sẽ thêm một hàm `ray_color(const ray& r)`. 
+Nó sẽ trả giá trị màu từ bất kì một tia nào trong scene. Hiện tại nó chỉ trả về giá trị màu đen.
+
+```diff
+  #include "color.h"
++ #include "ray.h"
+  #include "vec3.h"
+  
+  #include <iostream>
+  
++ color ray_color(const ray& r) {
++     return color(0,0,0);
++ }
+  
+  int main() {
+  
+      // Hình ảnh
+  
++     auto aspect_ratio = 16.0 / 9.0;
++     int image_width = 400;
++ 
++     // Tính chiều dọc bức ảnh và bảo đảm nó không bé hơn 1
++     int image_height = int(image_width / aspect_ratio);
++     image_height = (image_height < 1) ? 1 : image_height;
++ 
++     // Camera
++ 
++     auto focal_length = 1.0;
++     auto viewport_height = 2.0;
++     auto viewport_width = viewport_height * (double(image_width)/image_height);
++     auto camera_center = point3(0, 0, 0);
++ 
++     // Tính vector chạy từ đầu trái sang đầu phải và vector chạy từ đầu trên xuống đầu dưới
++     auto viewport_u = vec3(viewport_width, 0, 0);
++     auto viewport_v = vec3(0, -viewport_height, 0);
++ 
++     // Tính delta vector (khoảng cách giữa hai pixel) theo chiều dọc và ngang
++     auto pixel_delta_u = viewport_u / image_width;
++     auto pixel_delta_v = viewport_v / image_height;
++ 
++     // Tính tọa độ của pixel đầu tiên (gốc trên bên trái)
++     auto viewport_upper_left = camera_center
++                              - vec3(0, 0, focal_length) - viewport_u/2 - viewport_v/2;
++     auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+  
+      // Render
+  
+      std::cout << "P3\n" << image_width << " " << image_height << "\n255\n";
+  
+      for (int j = 0; j < image_height; j++) {
+          std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+          for (int i = 0; i < image_width; i++) {
++             auto pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
++             auto ray_direction = pixel_center - camera_center;
++             ray r(camera_center, ray_direction);
++ 
++             color pixel_color = ray_color(r);
+              write_color(std::cout, pixel_color);
+          }
+      }
+  
+      std::clog << "\rDone.                 \n";
+  }
+```
+<p style="text-align: center;"><b>Listing 9:</b> [main.cc] <i>Tạo ray trong scene</i></p>
+
+Lưu ý rằng trên đoạn code trên, tôi đã không biến `ray_direction` thành vector đơn vị. 
+Tôi nghĩ rằng làm thế thì code sẽ trông đơn giản và chạy nhanh hơn.
+
+Giờ ta sẽ điền nốt hàm `ray_color(ray)` để tạo một gradient đơn giản. Hàm này sẽ hòa một 
+cách tuyến tính giữa trắng và xanh dựa trên giá trị $y$ sau khi đã chuyển đổi hướng vector
+sang vector đơn vị (khiến $-1.0 \le y \le 1.0$). Vì chúng ta sử dụng giá trị y sau khi chuyển
+đổi sang vector đơn vị, ngoài gradient theo chiều dọc, chúng ta cũng sẽ có một gradient nhẹ 
+theo chiều ngang.
+
+Tôi sẽ dùng một thủ thuật phổ biến để biến đổi tuyến tính a trong khoảng $0.0 \le a \le 1.0$.
+Khi $a=1.0$, ta nhận được xanh. Khi $a=0.0$, ta nhận được trắng. Còn những giá trị ở giữa,
+ta nhận được một màu hòa giữa xanh và trắng. Quy tắc này tạo nên khái niệm "chuyển đổi tuyến tính" 
+(linear blend), hay "nội suy tuyến tính" (linear interpolation). Khái niệm này hay được gọi tắt thành
+lerp giữa 2 giá trị. Một lerp luôn có dạng:
+<p style="text-align: center;">$\text{màuTrộn} = (1-a) \cdot \text{giáTrịĐầu} + a \cdot \text{giáTrịCuối}$</p>
+với a đi từ 0 tới 1.
+
+Xếp chúng lại với nhau, ta có được:
+
+```diff
+  #include "color.h"
+  #include "ray.h"
+  #include "vec3.h"
+  
+  #include <iostream>
+  
+  
+  color ray_color(const ray& r) {
++     vec3 unit_direction = unit_vector(r.direction());
++     auto a = 0.5*(unit_direction.y() + 1.0);
++     return (1.0-a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
+  }
+  
+  ...
+```
+<p style="text-align: center;"><b>Listing 10:</b> [main.cc] <i>Render một gradient từ xanh đến trắng</i></p>
+
+Đoạn code trên sẽ cho ra:
+<figure>
+<p align="center" width="100%">
+  <img src="https://raytracing.github.io/images/img-1.02-blue-to-white.png"
+    alt="Image2" 
+    style="width:50%">
+  <figcaption><p align="center"><b>Image 2:</b> <i>Một tấm cảnh gradient từ xanh đên trắng dựa trên tọa độ y của ray</i></p></figcaption>
+  </p>
+</figure>
