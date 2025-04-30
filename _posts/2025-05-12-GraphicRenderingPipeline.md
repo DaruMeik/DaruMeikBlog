@@ -1,9 +1,9 @@
 ---
 layout: post
-title: The rendering pipeline: quá trình biến hóa dữ liệu số thành đồ họa trên máy tính
 permalink: "/TheRenderingPipeline/"
-hidden: true
 ---
+
+title: The rendering pipeline: quá trình biến hóa dữ liệu số thành đồ họa trên máy tính
 
 Bài viết trước: (Kĩ sư đồ họa là gì? Lập trình viên hay là họa sĩ?)[https://darumeik.github.io/DaruMeikBlog/WhatIsGraphicsProgrammer/]
 
