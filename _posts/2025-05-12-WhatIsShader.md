@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Shader là gì? Một công cụ không thể thiếu của kĩ sư đồ họa.
-permalink: "/WhatIsShader/"
 ---
 
 Chắc hẳn bạn đã quen với việc những con game hiện đại với đồ họa siêu thực thường đòi hỏi một máy có cấu hình mạnh, đặc biệt là phần GPU. Vậy liệu bạn có bao giờ thắc mắc rằng những con game đó đã sử dụng cục GPU mấy chục triệu của bạn như thế nào không? Hôm nay mình sẽ giải thích sơ về thắc mắc đó, cũng như giới thiệu về Shader, một công cụ quan trọng giúp lập trình viên giao tiếp với GPU.
